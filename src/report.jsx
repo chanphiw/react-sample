@@ -1,16 +1,16 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import React, { Component } from "react";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Navbar from "react-bootstrap/Navbar";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
-import Table from "react-bootstrap/Table";
-import axios from "axios";
-import Common from "./common";
-const BASE_URL = Common.API_URL;
-const options = Common.options;
+import "bootstrap/dist/css/bootstrap.min.css"
+import React, { Component } from "react"
+import Container from "react-bootstrap/Container"
+import Form from "react-bootstrap/Form"
+import Navbar from "react-bootstrap/Navbar"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
+import Card from "react-bootstrap/Card"
+import Table from "react-bootstrap/Table"
+import axios from "axios"
+import Common from "./common"
+const BASE_URL = Common.API_URL
+const options = Common.options
 export default class report extends Component {
   state = {
     zipcode: 33000,
@@ -19,50 +19,50 @@ export default class report extends Component {
     province_code: 0,
     province_name: "",
     district: [],
-  };
+  }
   getData = async () => {
     try {
       await axios
         .get(`${BASE_URL}/${this.state.zipcode}`, options)
         .then((response) => {
-          let res = response.data;
+          let res = response.data
 
           if (res.district === undefined) {
             this.setState({
               district: [],
-            });
+            })
           }
           this.setState({
             amphur_name: res.amphur_name,
             province_name: res.province_name,
             district: res.district,
-          });
+          })
         })
         .catch((err) => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
   filter = (e) => {
     this.setState({
       zipcode: e.target.value,
-    });
-    this.getData();
-  };
+    })
+    this.getData()
+  }
 
   componentDidMount() {
-    this.getData();
+    this.getData()
   }
   render() {
-    const { district } = this.state;
+    const { district } = this.state
     return (
       <div>
         <Navbar bg="primary" variant="dark">
           <Container>
             <Navbar.Brand href="#">ค้นหาเลขไปรษณีย์</Navbar.Brand>
-            <div>{Pathompong Chanphiw}</div>
+            <div className="text-white fw-bold">Pathompong Chanphiw</div>
           </Container>
         </Navbar>
         <Container>
@@ -117,6 +117,6 @@ export default class report extends Component {
           </div>
         </Container>
       </div>
-    );
+    )
   }
 }
