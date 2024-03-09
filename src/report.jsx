@@ -61,7 +61,9 @@ export default class report extends Component {
       <div>
         <Navbar bg="primary" variant="dark">
           <Container>
-            <Navbar.Brand href="#">ค้นหาเลขไปรษณีย์</Navbar.Brand>
+            <Navbar.Brand href="#">
+              <span className="fw-bold">ค้นหาเลขไปรษณีย์</span>
+            </Navbar.Brand>
             <div className="text-white fw-bold">
               66130045 : Pathompong Chanphiw
             </div>
@@ -73,8 +75,10 @@ export default class report extends Component {
               <Col lg="9">
                 <div align="left">
                   <h3>
-                    อำเภอ <u>{this.state.amphur_name}</u> จังหวัด{" "}
-                    <u>
+                    อำเภอ :{" "}
+                    <u className="text-success">{this.state.amphur_name}</u>{" "}
+                    จังหวัด :{" "}
+                    <u className="text-danger">
                       {this.state.province_name} {this.state.zipcode}
                     </u>
                   </h3>
@@ -99,17 +103,17 @@ export default class report extends Component {
                 <Table striped bordered hover>
                   <thead>
                     <tr>
-                      <th>#</th>
-                      <th>รหัสตำบล</th>
-                      <th>ตำบล</th>
+                      <th className="text-center bg-info">#</th>
+                      <th className="text-center bg-info">รหัสตำบล</th>
+                      <th className="text-center bg-info">ตำบล</th>
                     </tr>
                   </thead>
                   <tbody>
                     {district?.map((rs, index) => (
                       <tr key={index}>
                         <td align="center">{index + 1}</td>
-                        <td>{rs.district_code}</td>
-                        <td>{rs.district_name}</td>
+                        <td className="text-center">{rs.district_code}</td>
+                        <td className="text-center">{rs.district_name}</td>
                       </tr>
                     ))}
                   </tbody>
